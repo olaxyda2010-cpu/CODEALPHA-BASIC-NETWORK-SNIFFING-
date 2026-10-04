@@ -337,51 +337,58 @@ Request 2
 ICMP Echo Request
 ```
 Reply 2
+```bash
 
 192.232.216.135 → 10.0.2.5
 ICMP Echo Reply
-
+```
 Request 3
+```bash
 
 10.0.2.5 → 192.232.216.135
 ICMP Echo Request
-
+```
 Reply 3
+```bash
 
 192.232.216.135 → 10.0.2.5
 ICMP Echo Reply
-
+```
 Request 4
+```bash
 
 10.0.2.5 → 192.232.216.135
 ICMP Echo Request
-
+```
 Reply 4
+```bash
 
 192.232.216.135 → 10.0.2.5
 ICMP Echo Reply
-
+```
 This demonstrated successful two-way ICMP communication.
 
-14. Packet Payload Analysis
+## 14. Packet Payload Analysis
 
 The ICMP packets contained a 56-byte payload.
 
 The program displayed the payload in hexadecimal format:
+```bash
 
 09 99 c0 6a 00 00 00 00 7e 2e 0c 00
 00 00 00 00 00 10 11 12 13 14 15 16
 17 18 19 1a 1b 1c 1d 1e 1f 20 21 22
 23 24 25 26 27 28 29 2a 2b 2c 2d
 2e 2f 30 31 32 33 34 35 36 37
-
+```
 The program also produced an ASCII representation:
+```bash
 
 ...j....~....................... !"#$%&'()*+,-./01234567
-
+```
 This demonstrated that network packet payloads are fundamentally byte data and are not necessarily readable text.
 
-15. Packet Layer Analysis
+## 15. Packet Layer Analysis
 
 One of the important observations from the project was the layered structure of network packets.
 
