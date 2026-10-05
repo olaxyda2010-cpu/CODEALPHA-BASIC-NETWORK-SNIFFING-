@@ -392,7 +392,9 @@ This demonstrated that network packet payloads are fundamentally byte data and a
 
 One of the important observations from the project was the layered structure of network packets.
 
-For ICMP traffic, the program displayed:
+For ICMP traffic, the program displayed: 
+
+```bash
 
 Ether
   ↓
@@ -401,8 +403,11 @@ IP
 ICMP
   ↓
 Raw
+```
 
 For DNS traffic:
+```bash
+
 
 Ether
   ↓
@@ -411,16 +416,17 @@ IP
 UDP
   ↓
 DNS
-
+```
 This demonstrates the concept of protocol encapsulation.
 
 Each layer provides information or functionality required by the communication process.
 
-16. Traffic Flow Observed
+## 16. Traffic Flow Observed
 
 The complete traffic flow observed during the test was:
 
 User executes:
+```bash
 
 ping -c 4 networkwalks.com
               |
@@ -452,34 +458,37 @@ ICMP Echo Reply
        |
        v
 10.0.2.5
-
+```
 This was useful for demonstrating how an apparently simple command such as ping networkwalks.com involves multiple network protocols.
 
-17. Traffic Statistics
+## 17. Traffic Statistics
 
 The program was also designed to maintain counters for different protocol types:
+```bash
 
 Total Packets
 TCP Packets
 UDP Packets
 ICMP Packets
 Other Packets
-
+```
 The counters are updated whenever a packet is successfully identified.
 
 Example:
+```bash
 
 statistics["tcp"] += 1
 statistics["udp"] += 1
 statistics["icmp"] += 1
-
+```
 When packet capture is stopped with:
+```bash
 
 CTRL+C
-
+```
 the program displays a traffic summary.
 
-18. Challenges Encountered
+## 18. Challenges Encountered
 
 Several technical concepts were encountered during development.
 
@@ -488,25 +497,28 @@ Several technical concepts were encountered during development.
 The packet sniffer must capture traffic from the correct network interface.
 
 The interface was identified using:
+```bash
 
 ip addr
-
+```
 18.2 Administrative Privileges
 
 Packet capture requires appropriate privileges on Linux.
 
 The program was therefore executed using:
+```bash
 
 sudo python3 network_sniffer.py
-
+```
 18.3 Understanding Protocol Layers
 
 The captured traffic demonstrated that a packet can contain multiple protocol layers.
 
 For example:
+```bash
 
 Ether / IP / UDP / DNS
-
+```
 Initially, this output may appear complex, but it represents the encapsulation of different network protocols.
 
 18.4 Payload Interpretation
@@ -519,7 +531,7 @@ The program handles this by displaying hexadecimal and sanitized ASCII represent
 
 The testing process demonstrated that DNS traffic can occur before the actual ICMP traffic. This helped demonstrate the relationship between hostname resolution and network communication.
 
-19. Security and Ethical Considerations
+## 19. Security and Ethical Considerations
 
 The packet sniffer was developed strictly for authorized network monitoring and cybersecurity education.
 
@@ -551,7 +563,7 @@ Decryption of protected communications
 
 The purpose of the project is network visibility, protocol learning and defensive cybersecurity education.
 
-20. Results
+## 20. Results
 
 The project successfully demonstrated the ability to:
 
@@ -582,10 +594,12 @@ Demonstrate ICMP Echo Request and Echo Reply communication.
 Maintain traffic statistics.
 
 The test using:
+```bash
 
 ping -c 4 networkwalks.com
-
+```
 successfully demonstrated the complete sequence of:
+```bash
 
 DNS Query
      ↓
@@ -596,10 +610,11 @@ IP Resolution
 ICMP Echo Request
      ↓
 ICMP Echo Reply
-
-21. Learning Outcomes
+```
+## 21. Learning Outcomes
 
 Through this project, I developed a better understanding of:
+
 
 How network packets are transmitted.
 
@@ -652,9 +667,9 @@ Detection of unusual traffic patterns.
 Integration with defensive security monitoring tools.
 
 A future version could also provide a command such as:
-
+```bash
 sudo python3 network_sniffer.py -i eth0 --protocol TCP
-
+```
 to capture only a specific protocol.
 
 23. Conclusion
@@ -662,9 +677,10 @@ to capture only a specific protocol.
 The Python Network Sniffer project successfully demonstrated how Python and Scapy can be used to capture and analyze network traffic.
 
 During testing, the command:
+```bash
 
 ping -c 4 networkwalks.com
-
+```
 generated multiple types of traffic. The sniffer first observed DNS queries and responses using UDP and then captured ICMP Echo Requests and Echo Replies between the local machine and the resolved server IP address.
 
 The project provided practical experience with packet structures, network protocols, IP addressing, ports, payloads and protocol encapsulation. It also demonstrated how network traffic can be observed and analyzed using Python in a controlled cybersecurity laboratory.
@@ -674,35 +690,43 @@ Overall, the project provides a foundation for more advanced network monitoring,
 24. Project Evidence
 
 Test Command
+```bash
 
 ping -c 4 networkwalks.com
-
+```
 DNS Query Observed
+```bash
 
 10.0.2.5:40030 → 8.8.8.8:53
+```
 DNS Query: networkwalks.com
 
 DNS Response Observed
+```bash
 
 8.8.8.8:53 → 10.0.2.5:40030
 DNS Answer: 192.232.216.135
-
+```
 ICMP Request Observed
-
+```bash
 10.0.2.5 → 192.232.216.135
+```
 ICMP Echo Request
 
 ICMP Response Observed
+```bash
 
 192.232.216.135 → 10.0.2.5
 ICMP Echo Reply
-
+```
 Packet Structure
+```bash
 
 Ether / IP / UDP / DNS
 Ether / IP / ICMP / Raw
-
+```
 Final Project
+```bash
 
 Python Network Packet Sniffer
         |
@@ -715,3 +739,4 @@ Python Network Packet Sniffer
         +-- Traffic Statistics
 
 
+```
